@@ -1,0 +1,110 @@
+html
+    body
+        background-color: #E5E5E5
+        font-size: 10px
+        font-family: 'Montserrat', sans-serif
+        font-variant: small-caps
+        color: #8A8A8A
+        a
+            color: #1ABFE9
+        button
+            font-size: 12px
+            font-variant: small-caps
+            color: #ffffff
+            background-color: #1ABFE9
+            padding: 1px 8px
+            margin-top: 5px
+
+.container
+    max-width: 1140px
+    margin: 0 auto
+    height: 100%
+    padding: 0 15px
+    display: flex
+    justify-content: center
+    align-items: center
+    .hideWindow
+        display: none
+.modal
+    width: 541px
+    height: 400px
+    background-color: #fff
+    display: flex
+    flex-wrap: wrap
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.25)
+    &-left
+        width: 50%
+        position: relative
+        display: flex
+        justify-content: center
+        align-items: center
+        .bg
+            position: absolute
+            background-image: url(../img/mountain-bg.jpg)
+            background-repeat: no-repeat
+            background-size: 230%
+            width: 100%
+            height: 100%
+        .logo
+            position: relative
+            &-img
+                text-align: center
+            &-text
+                font-size: 20px
+                color: #ffffff
+    &-right
+        display: flex
+        align-content: space-between
+        width: 50%
+        flex-wrap: wrap
+        .title
+            width: 100%
+            font-size: 15px
+            text-align: center
+            margin-top: 25px
+        .reg-form
+            margin: 0 auto
+            width: 220px
+            font-size: 16px
+            &-item
+                .password
+                    display: block
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+                    .vision-container
+                        width: 5%
+                        text-align: right
+                        cursor: pointer
+                        .visibleSVG
+                            svg
+                input
+                    font-size: 14px
+                    font-weight: 300
+                    font-variant: normal
+                    text-transform: lowercase
+                    margin: 5px 0
+                    &::-webkit-input-placeholder
+                        color: #E9E9E9
+                        font-variant: small-caps
+                    &::-moz-placeholder
+                        color: #E9E9E9
+                        font-variant: small-caps
+                    &:-ms-input-placeholder
+                        color: #E9E9E9
+                        font-variant: small-caps
+                .line
+                    width: 100%
+                    height: 1px
+                    margin-bottom: 20px
+                    background-color: #000000
+        &-item_title
+        .privacy-check
+        .privacy
+            font-size: 12px
+            margin-top: 5px
+    .go-to-signin
+        font-variant: small-caps
+        text-align: center
+        width: 100%
+        margin-bottom: 25px
