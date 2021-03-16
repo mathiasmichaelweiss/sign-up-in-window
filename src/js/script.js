@@ -15,6 +15,8 @@ toggleWindowBtn.forEach((btn, i) => {
       inputEmail[i].style = "";
       item.style = "";
       document.querySelector("body").style = "";
+      document.querySelector(".header").style =
+        "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 0.4; margin-bottom: 2rem;";
     });
   });
 });
@@ -76,6 +78,7 @@ const inputEmail = document.querySelectorAll(".input-email");
 function validation(input) {
   const myRegexp = /\W/g;
   const bgColor = document.querySelector("body");
+  const header = document.querySelector(".header");
   input.forEach((item, i) => {
     if (input[i].classList.contains("input-name")) {
       if (
@@ -87,6 +90,8 @@ function validation(input) {
           "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
         bgColor.style =
           "transition: background-color 3s; background-color: #FF7777;";
+        header.style =
+          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
       } else {
         input[i].style = "";
         bgColor.style = "";
@@ -105,6 +110,8 @@ function validation(input) {
           "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
         bgColor.style =
           "transition: background-color 3s; background-color: #FF7777;";
+        header.style =
+          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
       } else {
         input[i].style = "";
         bgColor.style = "";
@@ -119,6 +126,8 @@ function validation(input) {
           "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
         bgColor.style =
           "transition: background-color 3s; background-color: #FF7777;";
+        header.style =
+          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
       } else {
         input[i].style = "";
         bgColor.style = "";
