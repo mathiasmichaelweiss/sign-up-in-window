@@ -3,6 +3,10 @@
 const modal = document.querySelectorAll(".modal");
 const toggleWindowBtn = document.querySelectorAll(".toggle-window");
 
+document.querySelector(".container").style.paddingBottom = `${
+  document.querySelector(".header").clientHeight + "px"
+}`;
+
 // toggle modal window
 toggleWindowBtn.forEach((btn, i) => {
   modal[0].classList.add("hideWindow");
@@ -74,11 +78,11 @@ const formItem = document.querySelectorAll(".reg-form");
 const inputName = document.querySelectorAll(".input-name");
 const inputPassword = document.querySelectorAll(".input-password");
 const inputEmail = document.querySelectorAll(".input-email");
+const header = document.querySelector(".header");
 
 function validation(input) {
   const myRegexp = /\W/g;
   const bgColor = document.querySelector("body");
-  const header = document.querySelector(".header");
   input.forEach((item, i) => {
     if (input[i].classList.contains("input-name")) {
       if (
