@@ -16,6 +16,10 @@
   </head>
   <body>
     <div class="container">
+      <div class="header" style="width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 0.4; margin-bottom: 2rem;"><div class="title">
+        <h1>JS form validation</h1>
+      </div>
+      <h2 style="width: 100%; text-align: center; font-size: 1.5rem;">try to make mistake</h2></div>
       <div class="modal">
         <div class="modal-left">
           <div class="bg"></div>
@@ -58,7 +62,7 @@
           <form action="" class="reg-form">
             <div class="reg-form-item">
               <p class="reg-form-item_title">name</p>
-              <p><input class="input-name" type="name" placeholder="enter your name" /></p>
+              <p><input class="input-name" type="name" placeholder="enter your name" maxlength="20"/></p>
               <div class="line"></div>
             </div>
 
@@ -71,7 +75,7 @@
             <div class="reg-form-item">
               <p class="reg-form-item_title">password</p>
               <p class="password">
-                  <input class="input-password" type="password" placeholder="enter your password" />
+                  <input class="input-password" type="password" placeholder="enter your password"  maxlength="25"/>
                   <span class="vision-container"></span>
                   <div class="line"></div>
                 </p>
@@ -79,9 +83,9 @@
 
             <input type="checkbox" class="privacy-check" />
             <p class="privacy">
-              i agree all <a href="">terms & conditions & privacy policy</a>
+              i agree with all <a href="">terms & conditions & privacy policy</a>
             </p>
-            <button>sing up</button>
+            <button>sign up</button>
           </form>
           <div class="go-to-signin">
             already have an account? <a href="#" class="toggle-window">sign up</a>
@@ -131,20 +135,20 @@
           <form action="" class="reg-form">
             <div class="reg-form-item">
               <p class="reg-form-item_title">name</p>
-              <p><input class="input-name" type="name" placeholder="enter your name" /></p>
+              <p><input class="input-name" type="name" placeholder="enter your name"  maxlength="20"/></p>
               <div class="line"></div>
             </div>
 
             <div class="reg-form-item">
               <p class="reg-form-item_title">password</p>
               <p class="password">
-                  <input class="input-password" type="password" placeholder="enter your password" />
+                  <input class="input-password" type="password" placeholder="enter your password"  maxlength="23"/>
                   <span class="vision-container"></span>
                   <div class="line"></div>
                 </p>
             </div>
 
-            <button>sing in</button>
+            <button>sign in</button>
           </form>
           <div class="go-to-signin">
             don't have an account? <a href="#" class="toggle-window">sign in</a>

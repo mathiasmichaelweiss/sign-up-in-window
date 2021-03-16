@@ -7,10 +7,14 @@ const toggleWindowBtn = document.querySelectorAll(".toggle-window");
 toggleWindowBtn.forEach((btn, i) => {
   modal[0].classList.add("hideWindow");
   btn.addEventListener("click", () => {
-    modal.forEach(item => {
-      console.log(i);
+    modal.forEach((item, j) => {
       item.classList.remove("hideWindow");
       modal[i].classList.add("hideWindow");
+      inputName[i].style = "";
+      inputPassword[i].style = "";
+      inputEmail[i].style = "";
+      item.style = "";
+      document.querySelector("body").style = "";
     });
   });
 });
@@ -37,17 +41,14 @@ visionContainer.forEach(container => {
   const visible = document.querySelectorAll(".visible");
   const invisible = document.querySelectorAll(".invisible");
   const password = document.querySelectorAll(".input-password");
-  password.forEach(pass => {
-    console.log(pass);
-  });
 
   visible.forEach((item, i) => {
     item.style.display = "none";
-    item.style.marginBottom = "3px";
+    item.style.marginBottom = "1%";
     item.addEventListener("click", e => {
       item.style.display = "none";
       invisible[i].style.display = "block";
-      password[i].type = "text";
+      password[i].type = "password";
     });
   });
 
@@ -55,37 +56,82 @@ visionContainer.forEach(container => {
     item.addEventListener("click", e => {
       item.style.display = "none";
       visible[i].style.display = "block";
-      password[i].type = "password";
+      password[i].type = "text";
     });
   });
 });
 
 // Validation
-/* const errors = {
+const errors = {
   incorrectName: "incorrect name: please use only numbers and letters",
   incorrectPassword:
     "incorrect password: password must be at least 8 characters long"
 };
 
+const formItem = document.querySelectorAll(".reg-form");
 const inputName = document.querySelectorAll(".input-name");
-const inputPassword = document.querySelectorAll(".input-Password");
+const inputPassword = document.querySelectorAll(".input-password");
+const inputEmail = document.querySelectorAll(".input-email");
 
-inputName.forEach((input, i) => {
-  if (inputName.textContent === undefined) {
-    console.log(errors.incorrectName);
-    inputName[i].style.border = "solid 1px red";
-  }
-});
+function validation(input) {
+  const myRegexp = /\W/g;
+  const bgColor = document.querySelector("body");
+  input.forEach((item, i) => {
+    if (input[i].classList.contains("input-name")) {
+      if (
+        input[i].value === "" ||
+        input[i].value.length < 4 ||
+        input[i].value.match(myRegexp)
+      ) {
+        input[i].style =
+          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
+        bgColor.style =
+          "transition: background-color 3s; background-color: #FF7777;";
+      } else {
+        input[i].style = "";
+        bgColor.style = "";
+      }
+    }
 
-inputPassword.forEach((input, i) => {
-  if (inputPassword.textContent === undefined) {
-    console.log(errors.incorrectPassword);
-    inputPassword[i].style.border = "solid 1px red";
-  
-  }
-});
-if (inputPassword.textContent === undefined) {
-  console.log(errors.incorrectPassword);
+    if (input[i].classList.contains("input-password")) {
+      if (
+        input[i].value === "" ||
+        input[i].value.length < 8 ||
+        input[i].value.match(myRegexp)
+      ) {
+        modal[i].style =
+          "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
+        input[i].style =
+          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
+        bgColor.style =
+          "transition: background-color 3s; background-color: #FF7777;";
+      } else {
+        input[i].style = "";
+        bgColor.style = "";
+      }
+    }
+
+    if (input[i].classList.contains("input-email")) {
+      if (input[i].value === "") {
+        modal[i].style =
+          "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
+        input[i].style =
+          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
+        bgColor.style =
+          "transition: background-color 3s; background-color: #FF7777;";
+      } else {
+        input[i].style = "";
+        bgColor.style = "";
+      }
+    }
+  });
 }
 
-function validation() {} */
+formItem.forEach((form, i) => {
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    validation(inputName);
+    validation(inputPassword);
+    validation(inputEmail);
+  });
+});
