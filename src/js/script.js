@@ -1,150 +1,344 @@
 "use strict";
-
-const modal = document.querySelectorAll(".modal");
-const toggleWindowBtn = document.querySelectorAll(".toggle-window");
-
-document.querySelector(".container").style.paddingBottom = `${
+window.addEventListener("DOMContentLoaded", () => {
+  /* document.querySelector(".container").style.paddingBottom = `${
   document.querySelector(".header").clientHeight + "px"
-}`;
+}`; */
 
-// toggle modal window
-toggleWindowBtn.forEach((btn, i) => {
-  modal[0].classList.add("hideWindow");
-  btn.addEventListener("click", () => {
-    modal.forEach((item, j) => {
-      item.classList.remove("hideWindow");
-      modal[i].classList.add("hideWindow");
-      inputName[i].style = "";
-      inputPassword[i].style = "";
-      inputEmail[i].style = "";
-      item.style = "";
-      document.querySelector("body").style = "";
-      document.querySelector(".header").style =
-        "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 0.4; margin-bottom: 2rem;";
-    });
-  });
-});
+  /* inputs for Modal */
 
-// toggle password vision
-const visionContainer = document.querySelectorAll(".vision-container");
-const visionDB = {
-  visible:
-    '<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.96298 2.79787C9.88423 2.68371 7.99176 0 5.00014 0C2.43309 0 0.145628 2.6683 0.0493791 2.78205C-0.0164597 2.85955 -0.0164597 2.97329 0.0493791 3.0512C0.145628 3.16495 2.43309 5.83325 5.00014 5.83325C7.56719 5.83325 9.85466 3.16495 9.95091 3.0512C10.0113 2.97911 10.0167 2.87537 9.96298 2.79787ZM5.00014 4.58325C4.081 4.58325 3.33351 3.83576 3.33351 2.91662C3.33351 1.99747 4.081 1.24998 5.00014 1.24998C5.91929 1.24998 6.66678 1.99747 6.66678 2.91662C6.66678 3.83576 5.91929 4.58325 5.00014 4.58325Z" fill="#8A8A8A"/></svg>',
-  invisible:
-    '<svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.00014 0.833435C2.43309 0.833435 0.145628 3.50173 0.0493791 3.61548C-0.0164597 3.69298 -0.0164597 3.80673 0.0493791 3.88464C0.106878 3.95255 0.947705 4.92878 2.16019 5.70627L3.46601 4.40045C3.38101 4.20045 3.33351 3.98087 3.33351 3.75005C3.33351 2.8309 4.081 2.08342 5.00014 2.08342C5.23098 2.08342 5.45055 2.13091 5.65054 2.21591L6.72428 1.14218C6.20094 0.955093 5.62638 0.833435 5.00014 0.833435Z" fill="#8A8A8A"/><path d="M9.96301 3.63131C9.90967 3.55422 9.02512 2.30924 7.53805 1.50675L8.68928 0.355522C8.77053 0.274273 8.77053 0.142185 8.68928 0.0609366C8.60803 -0.0203122 8.47595 -0.0203122 8.3947 0.0609366L1.31149 7.14419C1.23024 7.22543 1.23024 7.35752 1.31149 7.43877C1.3519 7.47961 1.40523 7.50002 1.45857 7.50002C1.51191 7.50002 1.56523 7.47961 1.60607 7.43918L2.9123 6.13295C3.55604 6.44711 4.26603 6.66669 5.00018 6.66669C7.56723 6.66669 9.85469 3.99839 9.95094 3.88465C10.0114 3.81256 10.0168 3.70881 9.96301 3.63131ZM5.00018 5.41671C4.61559 5.41671 4.26603 5.28046 3.98353 5.06131L6.31141 2.73343C6.53057 3.01593 6.66681 3.36551 6.66681 3.75008C6.66681 4.66922 5.91932 5.41671 5.00018 5.41671Z" fill="#8A8A8A"/></svg>'
-};
+  const modalInputs = {
+    upName:
+      '<div class="reg-form-item"><p class="reg-form-item_title">name</p><p><input class="input-name upName" type="name" placeholder="enter your name" maxlength="20"/></p><div class="line"></div></div>',
+    inName:
+      '<div class="reg-form-item"><p class="reg-form-item_title">name</p><p><input class="input-name inName" type="name" placeholder="enter your name" maxlength="20"/></p><div class="line"></div></div>',
+    email:
+      '<div class="reg-form-item"><p class="reg-form-item_title">e-mail</p><p><input class="input-email" type="email" placeholder="enter your e-mail" /></p><div class="line"></div></div>',
+    upPassword:
+      '<div class="reg-form-item"><p class="reg-form-item_title">password</p><p class="password"><input class="input-password upPassword" type="password" placeholder="enter your password"  maxlength="25"/><span class="vision-container"></span><div class="line"></div></p></div>',
+    inPassword:
+      '<div class="reg-form-item"><p class="reg-form-item_title">password</p><p class="password"><input class="input-password inPassword" type="password" placeholder="enter your password"  maxlength="25"/><span class="vision-container"></span><div class="line"></div></p></div>',
+    checkbox:
+      '<input type="checkbox" class="privacy-check" /><p class="privacy">i agree with all <a href="">terms & conditions & privacy policy</a></p>'
+  };
 
-visionContainer.forEach(container => {
-  function createVisionBtn(btnClass, DBvalue) {
-    const visionBtn = document.createElement("div");
-    visionBtn.classList.add(btnClass);
-    visionBtn.innerHTML = DBvalue;
-    container.append(visionBtn);
+  const modals = {
+    signUp: [
+      "create account",
+      "sign in",
+      `${modalInputs.upName}`,
+      `${modalInputs.email}`,
+      `${modalInputs.upPassword}`,
+      `${modalInputs.checkbox}`,
+      "sign up",
+      "in",
+      "inClass",
+      ".container"
+    ],
+    signIn: [
+      "sign in",
+      "sign up",
+      `${modalInputs.inName}`,
+      ``,
+      `${modalInputs.inPassword}`,
+      ``,
+      "sign in",
+      "up",
+      "upClass",
+      ".container"
+    ]
+  };
+
+  class Modal {
+    constructor(
+      title,
+      bottomLink,
+      name,
+      email,
+      password,
+      checkbox,
+      btnText,
+      toggleClass,
+      modalClass,
+      parentSelector
+    ) {
+      this.title = title;
+      this.bottomLink = bottomLink;
+      this.name = name;
+      this.email = email;
+      this.password = password;
+      this.checkbox = checkbox;
+      this.btnText = btnText;
+      this.toggleClass = toggleClass;
+      this.modalClass = modalClass;
+      this.parent = document.querySelector(parentSelector);
+    }
+    render() {
+      const elem = document.createElement("div");
+      elem.classList.add("modal");
+      elem.classList.add(`${this.modalClass}`);
+
+      elem.innerHTML = `
+    <div class="modal-left">
+          <div class="bg"></div>
+          <div class="logo">
+            <div class="logo-img">
+              <svg
+                width="93"
+                height="93"
+                viewBox="0 0 93 93"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M45.7801 46.9433L26.7012 27.8644L7.62221 46.9433"
+                  stroke="white"
+                  stroke-width="5"
+                />
+                <path
+                  d="M85.9883 46.9434L56.2974 17.2524L26.6064 46.9434"
+                  stroke="white"
+                  stroke-width="5"
+                />
+                <path
+                  d="M45 46L65.5 66.5L87 45"
+                  stroke="white"
+                  stroke-width="5"
+                />
+                <path
+                  d="M5.99996 45L37.4738 76.4738L67.0043 46.9433"
+                  stroke="white"
+                  stroke-width="5"
+                />
+              </svg>
+            </div>
+            <div class="logo-text">mountain view</div>
+          </div>
+        </div>
+        <div class="modal-right">
+          <div class="title">${this.title}</div>
+          <form action="" class="reg-form">
+          ${this.name}
+          ${this.email}
+          ${this.password}
+          ${this.checkbox}
+            <button>${this.btnText}</button>
+          </form>
+          <div class="go-to-signin">
+            already have an account? <a href="#" class="toggle-window ${this.toggleClass}">${this.bottomLink}</a>
+          </div>
+        </div>
+    `;
+      this.parent.append(elem);
+    }
   }
-  createVisionBtn("visible", visionDB.visible);
-  createVisionBtn("invisible", visionDB.invisible);
 
-  const visible = document.querySelectorAll(".visible");
-  const invisible = document.querySelectorAll(".invisible");
-  const password = document.querySelectorAll(".input-password");
+  const [...signUp] = modals.signUp;
+  const [...signIn] = modals.signIn;
 
-  visible.forEach((item, i) => {
-    item.style.display = "none";
-    item.style.marginBottom = "1%";
-    item.addEventListener("click", e => {
-      item.style.display = "none";
-      invisible[i].style.display = "block";
-      password[i].type = "password";
+  new Modal(...signUp).render();
+  new Modal(...signIn).render();
+
+  const modal = document.querySelectorAll(".modal");
+  const toggleWindowBtn = document.querySelectorAll(".toggle-window");
+
+  /* function createWindow(willRemove, willCreate) {
+  document.querySelector(willRemove).remove();
+  new Modal(willCreate).render();
+} */
+
+  /*   if (inBtn === null) {
+    upBtn.addEventListener("click", e => {
+      document.querySelector(".upClass").remove();
+      new Modal(...signUp).render();
+      console.log(inBtn);
+      return inBtn;
+    });
+  }
+
+  if (upBtn === null) {
+    inBtn.addEventListener("click", e => {
+      document.querySelector(".inClass").remove();
+      new Modal(...signIn).render();
+      console.log(upBtn);
+      return upBtn;
+    });
+  } */
+
+  // toggle modal window
+  toggleWindowBtn.forEach((btn, i) => {
+    modal[0].classList.add("hideWindow");
+    btn.addEventListener("click", () => {
+      modal.forEach((item, j) => {
+        item.classList.remove("hideWindow");
+        modal[i].classList.add("hideWindow");
+        item.style = "";
+        document.querySelector("body").style = "";
+        document.querySelector(".header").style =
+          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 0.4; margin-bottom: 2rem;";
+      });
     });
   });
 
-  invisible.forEach((item, i) => {
-    item.addEventListener("click", e => {
+  // toggle password vision
+  const visionContainer = document.querySelectorAll(".vision-container");
+  const visionDB = {
+    visible:
+      '<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.96298 2.79787C9.88423 2.68371 7.99176 0 5.00014 0C2.43309 0 0.145628 2.6683 0.0493791 2.78205C-0.0164597 2.85955 -0.0164597 2.97329 0.0493791 3.0512C0.145628 3.16495 2.43309 5.83325 5.00014 5.83325C7.56719 5.83325 9.85466 3.16495 9.95091 3.0512C10.0113 2.97911 10.0167 2.87537 9.96298 2.79787ZM5.00014 4.58325C4.081 4.58325 3.33351 3.83576 3.33351 2.91662C3.33351 1.99747 4.081 1.24998 5.00014 1.24998C5.91929 1.24998 6.66678 1.99747 6.66678 2.91662C6.66678 3.83576 5.91929 4.58325 5.00014 4.58325Z" fill="#8A8A8A"/></svg>',
+    invisible:
+      '<svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.00014 0.833435C2.43309 0.833435 0.145628 3.50173 0.0493791 3.61548C-0.0164597 3.69298 -0.0164597 3.80673 0.0493791 3.88464C0.106878 3.95255 0.947705 4.92878 2.16019 5.70627L3.46601 4.40045C3.38101 4.20045 3.33351 3.98087 3.33351 3.75005C3.33351 2.8309 4.081 2.08342 5.00014 2.08342C5.23098 2.08342 5.45055 2.13091 5.65054 2.21591L6.72428 1.14218C6.20094 0.955093 5.62638 0.833435 5.00014 0.833435Z" fill="#8A8A8A"/><path d="M9.96301 3.63131C9.90967 3.55422 9.02512 2.30924 7.53805 1.50675L8.68928 0.355522C8.77053 0.274273 8.77053 0.142185 8.68928 0.0609366C8.60803 -0.0203122 8.47595 -0.0203122 8.3947 0.0609366L1.31149 7.14419C1.23024 7.22543 1.23024 7.35752 1.31149 7.43877C1.3519 7.47961 1.40523 7.50002 1.45857 7.50002C1.51191 7.50002 1.56523 7.47961 1.60607 7.43918L2.9123 6.13295C3.55604 6.44711 4.26603 6.66669 5.00018 6.66669C7.56723 6.66669 9.85469 3.99839 9.95094 3.88465C10.0114 3.81256 10.0168 3.70881 9.96301 3.63131ZM5.00018 5.41671C4.61559 5.41671 4.26603 5.28046 3.98353 5.06131L6.31141 2.73343C6.53057 3.01593 6.66681 3.36551 6.66681 3.75008C6.66681 4.66922 5.91932 5.41671 5.00018 5.41671Z" fill="#8A8A8A"/></svg>'
+  };
+
+  visionContainer.forEach(container => {
+    function createVisionBtn(btnClass, DBvalue) {
+      const visionBtn = document.createElement("div");
+      visionBtn.classList.add(btnClass);
+      visionBtn.innerHTML = DBvalue;
+      container.append(visionBtn);
+    }
+    createVisionBtn("visible", visionDB.visible);
+    createVisionBtn("invisible", visionDB.invisible);
+
+    const visible = document.querySelectorAll(".visible");
+    const invisible = document.querySelectorAll(".invisible");
+    const password = document.querySelectorAll(".input-password");
+
+    visible.forEach((item, i) => {
       item.style.display = "none";
-      visible[i].style.display = "block";
-      password[i].type = "text";
+      item.style.marginBottom = "1%";
+      item.addEventListener("click", e => {
+        item.style.display = "none";
+        invisible[i].style.display = "block";
+        password[i].type = "password";
+      });
+    });
+
+    invisible.forEach((item, i) => {
+      item.addEventListener("click", e => {
+        item.style.display = "none";
+        visible[i].style.display = "block";
+        password[i].type = "text";
+      });
     });
   });
-});
 
-// Validation
-const errors = {
-  incorrectName: "incorrect name: please use only numbers and letters",
-  incorrectPassword:
-    "incorrect password: password must be at least 8 characters long"
-};
+  // Validation
+  const errors = {
+    incorrectName: "incorrect name: please use only numbers and letters",
+    incorrectPassword:
+      "incorrect password: password must be at least 8 characters long"
+  };
 
-const formItem = document.querySelectorAll(".reg-form");
-const inputName = document.querySelectorAll(".input-name");
-const inputPassword = document.querySelectorAll(".input-password");
-const inputEmail = document.querySelectorAll(".input-email");
-const header = document.querySelector(".header");
+  const formItem = document.querySelectorAll(".reg-form");
+  const inputInName = document.querySelector(".inName");
+  const inputInPassword = document.querySelector(".inPassword");
+  const inputUpName = document.querySelector(".upName");
+  const inputUpPassword = document.querySelector(".upPassword");
+  const inputEmail = document.querySelector(".input-email");
+  const header = document.querySelector(".header");
 
-function validation(input) {
-  const myRegexp = /\W/g;
-  const bgColor = document.querySelector("body");
-  input.forEach((item, i) => {
-    if (input[i].classList.contains("input-name")) {
+  function validation(input) {
+    const myRegexp = /\W/g;
+    const bgColor = document.querySelector("body");
+
+    modal.forEach(item => {
+      if (input.classList.contains("input-name")) {
+        if (
+          input.value === "" ||
+          input.value.length < 4 ||
+          input.value.match(myRegexp)
+        ) {
+          item.style =
+            "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
+          input.style =
+            "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
+          bgColor.style =
+            "transition: background-color 3s; background-color: #FF7777;";
+          header.style =
+            "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
+          isError = true;
+        } else {
+          item.style = "";
+          input.style = "";
+          bgColor.style = "";
+          isError = false;
+        }
+      }
+
+      if (input.classList.contains("input-password")) {
+        if (
+          input.value === "" ||
+          input.value.length < 8 ||
+          input.value.match(myRegexp)
+        ) {
+          item.style =
+            "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
+          input.style =
+            "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
+          bgColor.style =
+            "transition: background-color 3s; background-color: #FF7777;";
+          header.style =
+            "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
+          isError = true;
+        } else {
+          item.style = "";
+          input.style = "";
+          bgColor.style = "";
+          isError = false;
+        }
+      }
+
+      if (input.classList.contains("input-email")) {
+        if (input.value === "") {
+          item.style =
+            "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s; animation-iteration-count: 2;";
+          input.style =
+            "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s; animation-iteration-count: 2;";
+          bgColor.style =
+            "transition: background-color 3s; background-color: #FF7777;";
+          header.style =
+            "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
+          isError = true;
+        } else {
+          item.style = "";
+          input.style = "";
+          bgColor.style = "";
+          isError = false;
+        }
+      }
+    });
+  }
+
+  console.log(document.querySelectorAll(".modal")[0]);
+  console.log(document.querySelectorAll(".modal")[1]);
+  console.log(inputUpName);
+  console.log(inputUpPassword);
+  console.log(inputInName);
+  console.log(inputInPassword);
+
+  let isError = false;
+
+  function clearError() {
+    if (!isError) {
+      inputInName.style = "";
+      inputUpPassword.style = "";
+      inputEmail.style = "";
+    }
+  }
+
+  formItem.forEach((form, i) => {
+    form.addEventListener("submit", e => {
+      console.log(isError);
+      e.preventDefault();
       if (
-        input[i].value === "" ||
-        input[i].value.length < 4 ||
-        input[i].value.match(myRegexp)
+        document.querySelectorAll(".modal")[0].classList.contains("hideWindow")
       ) {
-        input[i].style =
-          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
-        bgColor.style =
-          "transition: background-color 3s; background-color: #FF7777;";
-        header.style =
-          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
+        validation(inputInName);
+        validation(inputInPassword);
       } else {
-        input[i].style = "";
-        bgColor.style = "";
+        validation(inputUpName);
+        validation(inputUpPassword);
+        validation(inputEmail);
       }
-    }
-
-    if (input[i].classList.contains("input-password")) {
-      if (
-        input[i].value === "" ||
-        input[i].value.length < 8 ||
-        input[i].value.match(myRegexp)
-      ) {
-        modal[i].style =
-          "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
-        input[i].style =
-          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
-        bgColor.style =
-          "transition: background-color 3s; background-color: #FF7777;";
-        header.style =
-          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
-      } else {
-        input[i].style = "";
-        bgColor.style = "";
-      }
-    }
-
-    if (input[i].classList.contains("input-email")) {
-      if (input[i].value === "") {
-        modal[i].style =
-          "border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); animation: error 0.1s";
-        input[i].style =
-          "transition: padding-left 1s; border: 1px solid rgba(255, 0, 0, 0.5); box-sizing: border-box; filter: drop-shadow(0px 0px 3px rgba(255, 0, 0, 0.25)); padding-left: 10px; animation: error 0.1s";
-        bgColor.style =
-          "transition: background-color 3s; background-color: #FF7777;";
-        header.style =
-          "transition: color 1s; width: 100%; display: flex; flex-wrap: wrap;  justify-content: center; font-size: 2rem; opacity: 1; margin-bottom: 2rem; color: rgba(255, 255, 255, 1)";
-      } else {
-        input[i].style = "";
-        bgColor.style = "";
-      }
-    }
-  });
-}
-
-formItem.forEach((form, i) => {
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    validation(inputName);
-    validation(inputPassword);
-    validation(inputEmail);
+    });
   });
 });
