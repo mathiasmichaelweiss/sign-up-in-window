@@ -1,4 +1,5 @@
 "use strict";
+
 window.addEventListener("DOMContentLoaded", () => {
   /* document.querySelector(".container").style.paddingBottom = `${
   document.querySelector(".header").clientHeight + "px"
@@ -307,13 +308,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  console.log(document.querySelectorAll(".modal")[0]);
-  console.log(document.querySelectorAll(".modal")[1]);
-  console.log(inputUpName);
-  console.log(inputUpPassword);
-  console.log(inputInName);
-  console.log(inputInPassword);
 
   let isError = false;
 
