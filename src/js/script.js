@@ -230,6 +230,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const inPasswordContainer = document.querySelector(".inPasswordContainer");
   const upPasswordContainer = document.querySelector(".upPasswordContainer");
 
+  if (document.body.clientWidth <= 320) {
+    header.remove();
+  }
+
   // Help btn
   const help = document.querySelectorAll(".help");
   const submitBtn = document.querySelectorAll("button");
