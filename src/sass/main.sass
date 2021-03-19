@@ -15,7 +15,6 @@ html
             color: #ffffff
             background-color: #1ABFE9
             padding: 1px 8px
-            margin-top: 5px
 
 .container
     max-width: 1140px
@@ -67,10 +66,25 @@ html
             text-align: center
             margin-top: 25px
         .reg-form
+            position: relative
             margin: 0 auto
             width: 220px
             font-size: 16px
+            display: flex
+            flex-wrap: wrap
+            .btn-container
+                margin-top: 5px
+                width: 100%
+                display: flex
+                align-items: center
+                justify-content: space-between
+                .help
+                    cursor: pointer
             &-item
+                width: 100%
+                .inNameContainer, .upNameContainer
+                    display: flex
+                    align-items: center
                 .password
                     display: block
                     display: flex
@@ -99,20 +113,21 @@ html
                     font-variant: normal
                     text-transform: lowercase
                     margin: 5px 0
+                    background-color: transparent
                     &::-webkit-input-placeholder
-                        color: #E9E9E9
+                        color: #B2B2B2
                         font-variant: small-caps
                     &::-moz-placeholder
-                        color: #E9E9E9
+                        color: #B2B2B2
                         font-variant: small-caps
                     &:-ms-input-placeholder
-                        color: #E9E9E9
+                        color: #B2B2B2
                         font-variant: small-caps
                 .line
                     width: 100%
                     height: 1px
                     margin-bottom: 20px
-                    background-color: #000000
+                    background-color: #B2B2B2
         &-item_title
         .privacy-check
         .privacy

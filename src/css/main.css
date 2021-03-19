@@ -52,6 +52,46 @@
   }
 }
 
+@-webkit-keyframes helpMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes helpMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes helpBtn {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
+@keyframes helpBtn {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
 html body {
   background-color: #E5E5E5;
   font-size: 10px;
@@ -70,7 +110,6 @@ html body button {
   color: #ffffff;
   background-color: #1ABFE9;
   padding: 1px 8px;
-  margin-top: 5px;
 }
 
 .container {
@@ -165,9 +204,46 @@ html body button {
 }
 
 .modal-right .reg-form {
+  position: relative;
   margin: 0 auto;
   width: 220px;
   font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.modal-right .reg-form .btn-container {
+  margin-top: 5px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-right .reg-form .btn-container .help {
+  cursor: pointer;
+}
+
+.modal-right .reg-form-item {
+  width: 100%;
+}
+
+.modal-right .reg-form-item .inNameContainer, .modal-right .reg-form-item .upNameContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .modal-right .reg-form-item .password {
@@ -211,20 +287,21 @@ html body button {
   font-variant: normal;
   text-transform: lowercase;
   margin: 5px 0;
+  background-color: transparent;
 }
 
 .modal-right .reg-form-item input::-webkit-input-placeholder {
-  color: #E9E9E9;
+  color: #B2B2B2;
   font-variant: small-caps;
 }
 
 .modal-right .reg-form-item input::-moz-placeholder {
-  color: #E9E9E9;
+  color: #B2B2B2;
   font-variant: small-caps;
 }
 
 .modal-right .reg-form-item input:-ms-input-placeholder {
-  color: #E9E9E9;
+  color: #B2B2B2;
   font-variant: small-caps;
 }
 
@@ -232,7 +309,7 @@ html body button {
   width: 100%;
   height: 1px;
   margin-bottom: 20px;
-  background-color: #000000;
+  background-color: #B2B2B2;
 }
 
 .modal-right .privacy {
